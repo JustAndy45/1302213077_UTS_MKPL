@@ -98,6 +98,10 @@ public class Employee {
 	}
 	
 	//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
+	private int calculateMonthsWorkedInYear(LocalDate currentDate) {
+        return currentDate.getYear() == yearJoined ? currentDate.getMonthValue() - monthJoined : 12;
+    }
+
 	public int getAnnualIncomeTax() {
         LocalDate currentDate = LocalDate.now();
         int monthsWorkedInYear = calculateMonthsWorkedInYear(currentDate);
