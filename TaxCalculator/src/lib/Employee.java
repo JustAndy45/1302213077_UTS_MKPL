@@ -108,4 +108,7 @@ public class Employee {
         return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthsWorkedInYear, annualDeductible, isSpouseIdEmpty(), childIdNumbers.size());
     }
 	
+	private boolean isSpouseIdEmpty() {
+        return spouseIdNumber.isEmpty();
+    }
 }
