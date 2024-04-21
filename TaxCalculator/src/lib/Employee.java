@@ -52,24 +52,32 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 	
-	public void setMonthlySalary(int grade) {	
-		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}
-	}
+	 public enum Grade {
+        GRADE_1(3000000),
+        GRADE_2(5000000),
+        GRADE_3(7000000);
+
+        private final int monthlySalary;
+
+        Grade(int monthlySalary) {
+            this.monthlySalary = monthlySalary;
+        }
+
+        public int getMonthlySalary() {
+            return monthlySalary;
+        }
+    }
+
+	private int calculateAdjustedSalary(int baseSalary) {
+        return isForeigner ? (int) (baseSalary * 1.5) : baseSalary;
+    }
+
+    public void setMonthlySalary(Grade grade) {
+        monthlySalary = calculateAdjustedSalary(grade.getMonthlySalary());
+    }
+
+	//PERUBAHAN PADA setMonthlySalary karena terlalu rumit untuk dibaca maka saya singkat dan 
+	//saya tambahkah calculatedAdjustedSalary untuk menghitung Salarynya
 	
 	public void setAnnualDeductible(int deductible) {	
 		this.annualDeductible = deductible;
